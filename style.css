@@ -1,0 +1,26 @@
+.uv{
+    padding:5px 10px;
+    color:white;
+    border-radius:3px;
+    border-style: dotted;
+}
+
+.uvLow{
+    background: green;
+}
+
+.uvMed{
+    background: yellow;
+}
+
+.uvHigh{
+    background: orange;
+}
+
+.uvVeryHigh{
+    background: red;
+}
+
+.uvExtreme{
+    background: purple;
+}
