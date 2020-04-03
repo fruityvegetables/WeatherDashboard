@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,28 +9,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script  src="https://code.jquery.com/jquery-3.4.1.min.js"  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="uikit.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <!-- UIKit JS file -->
+    <script src="./js/uikit.min.js"></script>
+    <!-- UIKit Icons -->
+    <script src="./js/uikit-icons.min.js"></script>
     <script src="script.js"></script>
 
 </head>
+
 <body>
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <input id="weatherInput"/>
+    <!-- User input for weather search! -->
+    <input id="weatherInput" />
     <button id="searchButton">Click here!</button>
+    <!-- Display history buttons! -->
+    <section id="searchHistory" class="uk-background-muted uk-padding-remove uk-visible-toggle" tabindex="-1" uk-slider>
+    </section>
+    <!-- Display weather div! -->
     <div id="weatherResults">
         Weather results:
     </div>
-    <!-- <div class="col-md-2 wklySec">
-    <p id="day1_date">1Day_Ahead</p>
-    <p class="fut-temp">Max Temp: <span id="max_temp1">TBD</span> °F</p>
-    <p class="fut-temp">Min Temp: <span id="min_temp1">TBD</span> °F</p>
-</div> -->
-<div id="dayForecast" class="container-fluid row m-0 p-0">
+    <!-- Display forecast div! -->
+    <div id="dayForecast" class="container-fluid row m-0 p-0">
 
-</div>
+    </div>
 
 </body>
-</html> 
+
+</html>
