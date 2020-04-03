@@ -32,7 +32,6 @@ $(document).ready(function() {
         })
         .then(function(uvresponse){
             //console.log(uvresponse);
-            // scale index colors pulled from https://www.epa.gov/sunsafety/uv-index-scale-0
             var uv = uvresponse.value;
             var uvScale;
     
@@ -78,6 +77,35 @@ $(document).ready(function() {
                 }));
                 
              })
+             function printWeatherForecast(){
+                $.ajax({
+                    url:forecastQuery+userInput,
+                    method:"GET",
+                })
+                .then(function(response){
+                    console.log(response);
+                    dayForecast.empty()
+                    //loop through all 3 hour increments returned, looking for the ones at noon
+                    for (chunk of response.list){
+                        if(chunk.dt_txt.includes("12:00:00")){
+                            //console.log(chunk);
+                            //create card
+                            dayForecast.append( 
+                                $("<div/>",{class:"card bg-primary text-center text-white border border-white p-2 col-xs-12 col-sm-6 col-md-4 col-lg"}).append([
+                                    $("<div/>",{class:"font-weight-bold", text:moment.unix(chunk.dt).format("MM/DD/YYYY")}),
+                                    $('<h3/>',{text:response.name}).append(
+                                        chunk.weather
+                                    ),
+                                    $('<div/>',{text:"Temp: "+kelvinToF(chunk.main.temp)+"°F"}),
+                                    $('<div/>',{text:"Humidity: "+chunk.main.humidity+"%"})
+                                ])
+                            )
+            
+                        }
+                    }
+                });
+            }
+            printWeatherForecast();
     })
 
 });
