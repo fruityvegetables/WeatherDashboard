@@ -1,5 +1,6 @@
 $(document).ready(function() {
     //variables
+    //var forecastCity = $(this).data('city');
     var userInput;
     var weatherReturned;
     var citiesSearched = $("#cityBtns");
@@ -23,37 +24,6 @@ $(document).ready(function() {
         return (temp2 - 273.15).toFixed(2);
     }
 
-    $(document).on("click","#searchButton", function(){
-        //console.log("soemthing");
-        userInput = $("#weatherInput").val()
-        //console.log(userInput);
-        
-            $.ajax({ 
-                 url:weatherQuery+userInput,
-                 method:"GET",
-
-             })
-             .then(function(response){
-                //var time = moment();
-                //weatherCard.empty();
-                weatherResults.empty();
-
-                var tempF = kelvinToF(response.main.temp);
-                $("#weatherResults").append("Temperature in Fahrenheit: " + tempF + "   ");
-                var tempC = kelvinToC(response.main.temp);
-                $("#weatherResults").append("Temperature in Celsius: " + tempC + "   ");
-                var humidity = response.main.humidity;
-                $("#weatherResults").append("Humidity: " + humidity + "%   ");
-                var windSpeed = response.wind.speed;
-                $("#weatherResults").append("Wind Speed: " + windSpeed + "   mph");
-                $("#weatherResults").append($('<div/>',{
-                    id:"uvDiv",text:"UV Index: "
-                }));
-                
-             })
-             
-    })
-    getUV(response);
     function getUV(response){
         //get the UV index via ajax call
         $.ajax({
@@ -74,9 +44,40 @@ $(document).ready(function() {
             else{uvScale = "uvExtreme"}
             
             //add index and appropriate class
-            $("#uvDiv").append($("<span/>",{
+            $("#uvDiv").append( $("<span/>",{
                 class:"uv "+uvScale, text:uv
         }));
         });
     }
+
+    $(document).on("click","#searchButton", function(){
+        //console.log("soemthing");
+        userInput = $("#weatherInput").val()
+        //console.log(userInput);
+        
+            $.ajax({ 
+                 url:weatherQuery+userInput,
+                 method:"GET",
+
+             })
+             .then(function(response){
+                // var time = moment();
+                //weatherCard.empty();
+
+                var tempF = kelvinToF(response.main.temp);
+                $("#weatherResults").append("Temperature in Fahrenheit: " + tempF + "   ");
+                var tempC = kelvinToC(response.main.temp);
+                $("#weatherResults").append("Temperature in Celsius: " + tempC + "   ");
+                var humidity = response.main.humidity;
+                $("#weatherResults").append("Humidity: " + humidity + "%   ");
+                var windSpeed = response.wind.speed;
+                $("#weatherResults").append("Wind Speed: " + windSpeed + "   mph");
+                $("#weatherResults").append($('<div/>',{
+                    id:"uvDiv",text:"UV Index: " + getUV(response)
+                
+                }));
+                
+             })
+    })
+
 });

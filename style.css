@@ -7,10 +7,13 @@
 
 .uvLow{
     background: green;
+    border-color: green;
 }
 
 .uvMed{
     background: yellow;
+    color: black;
+    border-color: yellow;
 }
 
 .uvHigh{
